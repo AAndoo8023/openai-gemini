@@ -4,10 +4,10 @@
 [functions]
   node_bundler = "esbuild"
 
-[[redirects]]
-  from = "/v1/*"
-  to = "/.netlify/functions/handler/:splat"
-  status = 200
+# 专门针对 edge-functions 目录下的 handler.mjs 进行路由
+[[edge_functions]]
+  path = "/v1/*"
+  function = "handler"
 
 [[headers]]
   for = "/*"
