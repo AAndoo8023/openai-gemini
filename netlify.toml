@@ -4,10 +4,9 @@
 [functions]
   node_bundler = "esbuild"
 
-# 关键部分：将所有以 /v1 开头的请求转发给 Netlify Functions
 [[redirects]]
   from = "/v1/*"
-  to = "/.netlify/functions/proxy/:splat"
+  to = "/.netlify/functions/handler/:splat"
   status = 200
 
 [[headers]]
