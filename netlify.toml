@@ -1,5 +1,18 @@
 [build]
-        publish = "public/"
+  publish = "public/"
 
 [functions]
-        node_bundler = "esbuild"
+  node_bundler = "esbuild"
+
+# 关键部分：将所有以 /v1 开头的请求转发给 Netlify Functions
+[[redirects]]
+  from = "/v1/*"
+  to = "/.netlify/functions/proxy/:splat"
+  status = 200
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Access-Control-Allow-Origin = "*"
+    Access-Control-Allow-Headers = "Content-Type, Authorization, x-goog-api-client, x-goog-api-key"
+    Access-Control-Allow-Methods = "GET, POST, OPTIONS"
